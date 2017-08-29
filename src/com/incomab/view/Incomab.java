@@ -27,11 +27,13 @@ import javafx.util.Duration;
  * @author peral
  */
 public class Incomab extends Application {
+       private final double FRM_WIDTH = 900;
+    private final double FRM_HEIGHT = 600;
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("LoginView.fxml"));
         stage.initStyle(StageStyle.UNDECORATED);
-        Scene scene = new Scene(root); 
+        Scene scene = new Scene(root,FRM_WIDTH,FRM_HEIGHT); 
         stage.setScene(scene);
        // startAnimation(imgContainer);
         stage.show();//
