@@ -46,6 +46,8 @@ public class Incomab extends Application {
 
     public static void main(String[] args) {
         launch(args);
+        System.out.println("Alo perron");
     }
     
 }
+//Alo perron
