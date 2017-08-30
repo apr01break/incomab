@@ -39,7 +39,8 @@ public class LoginController implements Initializable {
     Image imgCajamarca;
     Image imgChiclayo;
     Image imgLoro;
-    private final int NUM_OF_IMGS = 3;
+    Image imgMacchupicchu;
+    private final int NUM_OF_IMGS = 4 ;
     private final int SLIDE_FREQ = 4; // in secs
     @FXML
     private MaterialDesignIconView btnClose;
@@ -55,21 +56,26 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
+       LoadSlide();
+    }    
+    //A LIST OF IMAGES IN A ETHERNAL LOOP TRANSITION
+    private void LoadSlide(){
+         try {
             // load url of images
-            FileInputStream inImgChiclayo=new FileInputStream("src/com/incomab/view/images/chiclayo.png");
-            FileInputStream inImgCajamarca=new FileInputStream("src/com/incomab/view/images/cajamarca.png");
-            FileInputStream inImgLoro=new FileInputStream("src/com/incomab/view/images/loro.png");
+      
+            
             //define image
-            imgChiclayo=new Image(inImgChiclayo);
-            imgCajamarca=new Image(inImgCajamarca);
-            imgLoro=new Image(inImgLoro);
+            imgChiclayo=new Image(getClass().getResourceAsStream("/images/chiclayo.png"));
+            imgCajamarca=new Image(getClass().getResourceAsStream("/images/cajamarca.png"));
+            imgLoro=new Image(getClass().getResourceAsStream("/images/loro.png"));
+            imgMacchupicchu=new Image(getClass().getResourceAsStream("/images/macchupicchu.png"));
             //create imageview
             ImageView vwChiclayo=new ImageView(imgChiclayo);
             ImageView vwCajamarca=new ImageView(imgCajamarca);
             ImageView vwLoro=new ImageView(imgLoro);
+            ImageView vwMacchupicchu=new ImageView(imgMacchupicchu);
             //fil the HBox
-            hbxLogin.getChildren().addAll(vwChiclayo,vwCajamarca,vwLoro);
+            hbxLogin.getChildren().addAll(vwChiclayo,vwCajamarca,vwLoro,vwMacchupicchu);
             //transition
             EventHandler<ActionEvent> slideAction = (ActionEvent t) -> {
                 TranslateTransition trans = new TranslateTransition(Duration.seconds(1.5), hbxLogin);           
@@ -97,11 +103,10 @@ public class LoginController implements Initializable {
             Timeline anim = new Timeline(keyFrames.toArray(new KeyFrame[NUM_OF_IMGS]));
             anim.setCycleCount(Timeline.INDEFINITE);
             anim.playFromStart();
-        } catch (FileNotFoundException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }       
-    }    
-
+    }
     @FXML
     private void handleClose(MouseEvent event) {
         System.exit(0);
